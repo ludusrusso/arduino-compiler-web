@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} App Name{% endblock %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block page_content %}
+		<div class="page-header">
+		<h1> Ciao{% if user %}, {{ user.username|capitalize }}{% endif %}!</h1>
+		{% if user.role %}
+		<h2>Bentornato!</h2>
+		{% endif %}
+		</div>
+		{{ wtf.quick_form(form) }}
+
+<h1>&nbsp;</h1>
+				<div class="well">
+					<p> L'ora locale è {{ moment(current_time).format('LLL') }} </p>
+					<p> È stato {{ moment(current_time).fromNow(refresh=True) }} </p>
+				</div>
+{% endblock %}
