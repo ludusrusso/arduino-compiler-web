@@ -23,7 +23,7 @@ class Compiler:
     def compile(self):
         os.chdir(path)
         of = open("Makefile", "w")
-        make_template = Template("include {{ mk }} BOARD = {{ board }}\nPORT = {{ port }}")
+        make_template = Template("include {{ mk }}\nBOARD = {{ board }}\nPORT = {{ port }}")
         of.write(make_template.render(mk=arduino_mk, board=arduino_board, port=port))
         of.close()
         self.proc = subprocess.Popen(['make'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
