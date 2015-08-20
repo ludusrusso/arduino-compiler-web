@@ -17,7 +17,7 @@ def compile():
     return Response(comp.read_proc(), mimetype='text/event-stream')
 
 @ardu.route('/_monitor')
-def compile():
+def monitor():
     from .compiler import Compiler
     comp = Compiler();
     comp.monitor()
