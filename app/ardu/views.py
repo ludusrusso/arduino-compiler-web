@@ -15,3 +15,10 @@ def compile():
     comp.save(prog)
     comp.compile()
     return Response(comp.read_proc(), mimetype='text/event-stream')
+
+@ardu.route('/_monitor')
+def compile():
+    from .compiler import Compiler
+    comp = Compiler();
+    comp.monitor()
+    return Response(comp.read_proc(), mimetype='text/event-stream')

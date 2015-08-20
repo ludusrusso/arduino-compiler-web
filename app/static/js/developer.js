@@ -42,8 +42,25 @@ var compFun =  function() {
     } else {
       logconsole.getDoc().setValue(logconsole.getDoc().getValue() + e.data + '\n');
       logconsole.setCursor({line: logconsole.getDoc().getValue().split(/\r\n|\r|\n/).length});
-      valeur = valeur+2;
+      valeur = valeur+0.1;
       $("#devprogress").css('width', valeur+'%').attr('aria-valuenow', valeur); 
+    }
+  };
+  return false;
+}
+
+var monitorFun =  function() {
+  var url =  '/_monitor'
+  var eventOutputContainer = document.getElementById("output");
+  var evtSrc = new EventSource(url);
+
+  evtSrc.onmessage = function(e) {   
+    if (e.data === 'STOP'){
+      console.log("STOP");
+      e.target.close();
+    } else {
+      logconsole.getDoc().setValue(logconsole.getDoc().getValue() + e.data + '\n');
+      logconsole.setCursor({line: logconsole.getDoc().getValue().split(/\r\n|\r|\n/).length});
     }
   };
   return false;

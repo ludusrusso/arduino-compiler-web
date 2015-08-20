@@ -27,6 +27,10 @@ class Compiler:
         of.close()
         self.proc = subprocess.Popen(['make', 'upload'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
+    def monitor(self):
+        os.chdir(path)
+        self.proc = subprocess.Popen(['make', 'monitor'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
     def read_proc(self):
         while True:
             line = self.proc.stdout.readline()
