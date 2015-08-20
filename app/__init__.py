@@ -22,4 +22,7 @@ def create_app(config_name):
     from .main import main as main_bp
     app.register_blueprint(main_bp)
 
+    from .ardu import ardu as ardu_bp
+    app.register_blueprint(ardu_bp, url_prefix='/ardu')
+
     return app
