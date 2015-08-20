@@ -1,11 +1,14 @@
 import subprocess
 import tempfile
 import os
+from jinja2 import Template
 
 path = '/tmp/web_arduino/'
 if not os.path.isdir(path):
     os.mkdir(path)
 
+arduino_board = os.environ.get('ARDUINO_BOARD') or 'leonardo'
+port = os.environ.get('ARDUINO_PORT') or '/dev/ttyUSB0'
 
 class Compiler:
     def __init__(self):
@@ -19,8 +22,8 @@ class Compiler:
     def compile(self):
         os.chdir(path)
         of = open("Makefile", "w")
-        make = "include /Users/ludus/develop/arduino_ws/Arduino-Makefile/Arduino.mk \n BOARD = uno \n PORT = /dev/tty.usbmodem*"
-        of.write(make)
+        make_template = Template("BOARD = {{ board }}\nPORT = {{ port }}")
+        of.write(make_template.render(board=arduino_board, port=port))
         of.close()
         self.proc = subprocess.Popen(['make'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
