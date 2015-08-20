@@ -16,17 +16,16 @@ class Compiler:
         pass
 
     def save(self, prog):
-        of = open(path + "Blink.ino", "w")
+        of = open(path + "program.ino", "w")
         of.write(prog)
         of.close()
 
     def compile(self):
         os.chdir(path)
         of = open("Makefile", "w")
-        make_template = Template("include {{ mk }}\nBOARD = {{ board }}\nPORT = {{ port }}")
-        of.write(make_template.render(mk=arduino_mk, board=arduino_board, port=port))
+        of.write(render_template('ardu/Makefile', mk=arduino_mk, board=arduino_board, port=port, libs=''))
         of.close()
-        self.proc = subprocess.Popen(['make'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        self.proc = subprocess.Popen(['make', 'upload'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
     def read_proc(self):
         while True:
