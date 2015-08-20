@@ -1,7 +1,7 @@
 import subprocess
 import tempfile
 import os
-from jinja2 import Template
+from flask import render_template
 
 path = '/tmp/web_arduino/'
 if not os.path.isdir(path):
