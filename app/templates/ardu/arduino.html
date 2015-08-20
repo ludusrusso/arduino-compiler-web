@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %} Arduino{% endblock %}
+
+
+{% block page_content %}
+
+<script type=text/javascript src=" {{url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}">
+</script>
+
+<script type=text/javascript src="{{url_for('static', filename='js/developer.js') }}">
+</script>
+
+ <link rel="stylesheet"  href="{{url_for('static', filename ='codemirror/theme/3024-night.css') }} ">
+
+
+
+  <script type=text/javascript src="{{url_for('static', filename='codemirror/lib/codemirror.js') }}"></script>
+
+  <link rel="stylesheet" href="{{url_for('static', filename='codemirror/lib/codemirror.css') }}">
+
+  <script type=text/javascript src="{{url_for('static', filename='codemirror/mode/javascript/javascript.js') }}"></script>
+
+  <script type=text/javascript src="{{url_for('static', filename='codemirror/mode/clike/clike.js') }}"></script>
+
+
+<div id="event"></div>
+
+ <div class="container">
+   <h1>Arduino Compiler</h1>
+   <div class="row">
+    <div class="col-md-12">
+      <p>
+        <button type="button" class="btn btn-default" onclick="compFun();">Save</button>
+        <button type="button" class="btn btn-default" onclick="compFun();">Compile</button>
+        <button type="button" class="btn btn-default" onclick="compFun();">Compile</button>
+        </p>
+      </div>
+       </div>
+   <div class="row">
+    <div class="col-md-12">
+
+      <textarea rows = 50 cols = 80 name='prog' id='code'></textarea>
+    </div>
+    </div>
+      
+
+  <div class="row">
+      <div class="col-md-12">
+        <div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="devprogress">
+  </div>
+</div>
+
+          
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+
+     <textarea rows = 10 cols = 80 id='pm'></textarea>
+   </div>
+ </div>
+</div>
+{% endblock %}
