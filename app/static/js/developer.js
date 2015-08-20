@@ -25,7 +25,7 @@ var compFun =  function() {
   var valeur = 0;
   $("#devprogress").css('width', valeur+'%').attr('aria-valuenow', valeur); 
   logconsole.getDoc().setValue('');
-  var url =  '/ardu/_compile?' + jQuery.param({
+  var url =  '/_compile?' + jQuery.param({
     prog: editor.getDoc().getValue(),
     args: $('input[name="args"]').val()
   });
