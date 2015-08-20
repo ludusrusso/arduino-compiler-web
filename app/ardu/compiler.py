@@ -9,6 +9,7 @@ if not os.path.isdir(path):
 
 arduino_board = os.environ.get('ARDUINO_BOARD') or 'leonardo'
 port = os.environ.get('ARDUINO_PORT') or '/dev/ttyUSB0'
+arduino_mk = os.environ.get('ARDUINO_MK') or '/usr/share/arduino/Arduino.mk'
 
 class Compiler:
     def __init__(self):
@@ -22,8 +23,8 @@ class Compiler:
     def compile(self):
         os.chdir(path)
         of = open("Makefile", "w")
-        make_template = Template("BOARD = {{ board }}\nPORT = {{ port }}")
-        of.write(make_template.render(board=arduino_board, port=port))
+        make_template = Template("include {{ arduino_mk }} BOARD = {{ board }}\nPORT = {{ port }}")
+        of.write(make_template.render(arduino_mk=arduino_mk, board=arduino_board, port=port))
         of.close()
         self.proc = subprocess.Popen(['make'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
