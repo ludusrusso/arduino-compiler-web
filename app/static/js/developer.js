@@ -50,7 +50,7 @@ var compFun =  function() {
 }
 
 var monitorFun =  function() {
-  var url =  '/_monitor'
+  var url =  '/_start_monitor'
   var eventOutputContainer = document.getElementById("output");
   var evtSrc = new EventSource(url);
 
@@ -65,5 +65,4 @@ var monitorFun =  function() {
   };
   return false;
 }
-
 
