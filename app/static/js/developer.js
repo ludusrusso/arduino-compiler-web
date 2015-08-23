@@ -59,7 +59,7 @@ var monitorFun =  function() {
       console.log("STOP");
       e.target.close();
     } else {
-      logconsole.getDoc().setValue(logconsole.getDoc().getValue() + e.data + '\n');
+      logconsole.replaceRange(e.data + '\n', CodeMirror.Pos(editor.lastLine()))
       logconsole.setCursor({line: logconsole.getDoc().getValue().split(/\r\n|\r|\n/).length});
     }
   };
