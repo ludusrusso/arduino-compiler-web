@@ -29,7 +29,6 @@ var compFun =  function() {
     prog: editor.getDoc().getValue(),
     args: $('input[name="args"]').val()
   });
-  var eventOutputContainer = document.getElementById("output");
   var evtSrc = new EventSource(url);
 
   evtSrc.onmessage = function(e) {   
@@ -51,7 +50,6 @@ var compFun =  function() {
 
 var monitorFun =  function() {
   var url =  '/_start_monitor'
-  var eventOutputContainer = document.getElementById("output");
   var evtSrc = new EventSource(url);
 
   shell = logconsole.getDoc()
@@ -68,4 +66,11 @@ var monitorFun =  function() {
   };
   return false;
 }
+
+var stopMonitor = function() {
+        $.getJSON('/_stop_monitor', {}, 
+          function(data) {
+          );
+        return false;
+      });
 
