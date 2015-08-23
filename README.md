@@ -44,9 +44,9 @@ ARDUINO_PORT -> The port where arduino is connected
 ARDUINO_MK -> The route to Arduino.mk file
 ARDUINO_BOARD -> The tag name of the board connected, (e.g., uno or leonardo)
 
-example (with default variables):
+example (with default values):
 ```Bash
-$ source ARDUINO_PORT=/dev/ttyACM0
+$ source ARDUINO_PORT=/dev/ttyUSB0
 $ source ARDUINO_BOARD=leonardo
 $ source ARDUINO_MK=/usr/share/arduino/Arduino.mk
 ```
