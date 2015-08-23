@@ -3,6 +3,8 @@ import tempfile
 import os
 from flask import render_template
 
+import serial
+
 path = '/tmp/web_arduino/'
 if not os.path.isdir(path):
     os.mkdir(path)
