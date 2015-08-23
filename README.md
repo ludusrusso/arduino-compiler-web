@@ -11,26 +11,30 @@ The use cases is an arduino connected to a Raspberry-Pi Computer.
 
 ## Arduino-mk
 
-This application requires the Arduino Makefile to work properly, you can
+This application requires the [Arduino Makefile](https://github.com/sudar/Arduino-Makefile) to work properly, you can
 either install it from repository (e.g. `apt-get install arduino-mk`) or install
 it from the github repo. The second way is recommended becasue updeates:
 the repository arduino-mk have issues with the Arduino Leonardo Board
 
-# VirtualEnv
-When working with python, it is reccomanded to use a virtual environment.
+## VirtualEnv
+When working with python, it is reccomanded to use a [virtual environment](https://virtualenv.pypa.io/en/latest/).
 Simply run 
 ```Bash
-virtualenv env
-source env/bin/activate
+$ virtualenv env
+$ source env/bin/activate
 ```
 in the same forlder you downloaded the repo, then install dependences with pip
 
 
 ## Flask
 
-This application uses flask microframework to accomplish web tasks, you
+This application uses [flask microframework](http://flask.pocoo.org/) to accomplish web tasks, you
 can simply download it with the commabnd pip install flask. The application
 also need flask-bootstrap and flask-script.
+```Bash
+(env)$ pip intall flask flask-bootstrap flask-script
+```
+
 
 # Setting up
 
@@ -42,9 +46,9 @@ ARDUINO_BOARD -> The tag name of the board connected, (e.g., uno or leonardo)
 
 example (with default variables):
 ```Bash
-source ARDUINO_PORT=/dev/ttyACM0
-source ARDUINO_BOARD=leonardo
-source ARDUINO_MK=/usr/share/arduino/Arduino.mk
+$ source ARDUINO_PORT=/dev/ttyACM0
+$ source ARDUINO_BOARD=leonardo
+$ source ARDUINO_MK=/usr/share/arduino/Arduino.mk
 ```
 
 # Running the server
@@ -52,7 +56,7 @@ source ARDUINO_MK=/usr/share/arduino/Arduino.mk
 simply run the command
 
 ```Bash
-./manager -h 0.0.0.0
+(env)$ ./manager -h 0.0.0.0
 ```
 then connect to the path http://< IP or HOSTNAME >:5000 and enjoy!
 
