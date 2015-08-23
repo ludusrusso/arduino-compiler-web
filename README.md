@@ -1,4 +1,4 @@
-# arduino-compiler-web
+# Arduino Webapp
 A webapp that help programming arduino using a web browser
 
 This app is supposed to run on a remote server connected to an Arduino (or similar)
