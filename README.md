@@ -56,7 +56,7 @@ $ source ARDUINO_MK=/usr/share/arduino/Arduino.mk
 simply run the command
 
 ```Bash
-(env)$ ./manager -h 0.0.0.0
+(env)$ ./manager runserver -h 0.0.0.0
 ```
 then connect to the path http://< IP or HOSTNAME >:5000 and enjoy!
 
