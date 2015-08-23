@@ -61,8 +61,9 @@ var monitorFun =  function() {
       console.log("STOP");
       e.target.close();
     } else {
-      shell.replaceRange(e.data + '\n', shell.lastLine())
-      shell.setCursor(shell.lastLine(),0)
+      console.log(e.data);
+   //   shell.replaceRange(e.data + '\n', shell.lastLine())
+   //   shell.setCursor(shell.lastLine(),0)
     }
   };
   return false;
