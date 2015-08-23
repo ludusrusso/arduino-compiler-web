@@ -18,10 +18,10 @@ def compile():
     return Response(comp.read_proc(), mimetype='text/event-stream')
 
 @ardu.route('/_start_monitor')
-def monitor():
+def start_monitor():
     return Response(comp.monitor_start(), mimetype='text/event-stream')
 
 @ardu.route('/_stop_monitor')
-def monitor():
+def stop_monitor():
     comp.monitor_stop();
     return "redirect(ardu.route)"
