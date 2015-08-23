@@ -19,9 +19,9 @@ def compile():
 
 @ardu.route('/_start_monitor')
 def start_monitor():
-    return Response(comp.monitor_start(), mimetype='text/event-stream')
+    return Response(comp.monitor_open(), mimetype='text/event-stream')
 
 @ardu.route('/_stop_monitor')
 def stop_monitor():
-    comp.monitor_stop();
+    comp.monitor_close();
     return "redirect(ardu.route)"
