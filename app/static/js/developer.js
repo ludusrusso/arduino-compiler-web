@@ -54,12 +54,14 @@ var monitorFun =  function() {
   var eventOutputContainer = document.getElementById("output");
   var evtSrc = new EventSource(url);
 
+  shell = logconsole.getDoc()
+
   evtSrc.onmessage = function(e) {   
     if (e.data === 'STOP'){
       console.log("STOP");
       e.target.close();
     } else {
-      logconsole.replaceRange(e.data + '\n', CodeMirror.Pos(logconsole.lastLine()))
+      shell.replaceRange(e.data + '\n', CodeMirror.Pos(shell.lastLine()))
       //logconsole.setCursor({line: logconsole.getDoc().getValue().split(/\r\n|\r|\n/).length});
     }
   };
