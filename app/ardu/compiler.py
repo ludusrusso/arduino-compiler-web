@@ -27,9 +27,16 @@ class Compiler:
         of.close()
         self.proc = subprocess.Popen(['make', 'upload'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
-    def monitor(self):
-        os.chdir(path)
-        self.proc = subprocess.Popen(['make', 'monitor'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    def monitor_start(self):
+        ser = serial.Serial(port, 9600, timeout=1)
+        self.read = True
+        while self.read:
+            yield "data: " + ser.readline().rstrip()+'\n\n'
+        ser.close()
+        yield "data: " + "STOP" + "\n\n" 
+
+    def monitor_close(self):
+        self.read = False
 
     def read_proc(self):
         while True:
