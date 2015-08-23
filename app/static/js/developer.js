@@ -70,7 +70,6 @@ var monitorFun =  function() {
 var stopMonitor = function() {
         $.getJSON('/_stop_monitor', {}, 
           function(data) {
-          );
   return false;
   });
 }
