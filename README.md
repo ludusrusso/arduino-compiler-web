@@ -1,5 +1,5 @@
 # Arduino Webapp
-A webapp that help programming arduino using a web browser
+A webapp that helps programming arduino using a web browser
 
 This app is supposed to run on a remote server connected to an Arduino (or similar)
 board. It provides a solution to probram the Arduino board from a remote
@@ -67,7 +67,11 @@ The application:
  - compiles and upload the code to arduino
  - Monitor Serial messages from Arduino
 
+# Test
 
+This Application has been test on a Respberry Pi 2 (B) running Ubunut 14.04
+and an Arduino Leonardo.
+Tested Clients are Google Chrome and Safari Browsers on Mac OS X Yosemite
 
 
 
