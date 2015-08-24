@@ -4,11 +4,13 @@ from flask import render_template, session, redirect, url_for, request, Response
 from . import ardu
 
 from .compiler import Compiler
+
+from ..models import Sketch
 comp = Compiler();
 
 @ardu.route('/') 
 def index():
-    return render_template('ardu/arduino.html')
+    return render_template('ardu/arduino.html', code=Sketch.query.first().code)
 
 @ardu.route('/_compile')
 def compile():
