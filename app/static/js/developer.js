@@ -54,7 +54,7 @@ var Buffer = function() {
   this.str = "";
   this.addline = function(line) {
     this.str += line;
-    if (cnt >= 100) {
+    if (self.cnt >= 100) {
       this.str = this.str.substr(indexOf('\n'), this.str.length);
     } else {
       cnt+=1;
