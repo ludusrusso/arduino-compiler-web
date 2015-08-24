@@ -3,6 +3,8 @@ import tempfile
 import os
 from flask import render_template
 
+import serial
+
 path = '/tmp/web_arduino/'
 if not os.path.isdir(path):
     os.mkdir(path)
@@ -26,6 +28,17 @@ class Compiler:
         of.write(render_template('ardu/Makefile', mk=arduino_mk, board=arduino_board, port=port, libs=''))
         of.close()
         self.proc = subprocess.Popen(['make', 'upload'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+    def monitor_open(self):
+        ser = serial.Serial(port, 9600, timeout=1)
+        self.read = True
+        while self.read:
+            yield "data: " + ser.readline().rstrip() + "\n\n"
+        ser.close()
+        yield "data: " + "STOP" + "\n\n" 
+
+    def monitor_close(self):
+        self.read = False
 
     def read_proc(self):
         while True:

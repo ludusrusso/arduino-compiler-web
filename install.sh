@@ -4,7 +4,7 @@ pip install virtuaenv
 virtuaenv env
 source env/bin/activate
 
-pip install flask flask-bootstrap flask-script
+pip install flask flask-bootstrap flask-script screen
 
 apt-get install libdevice-serialport-perl libyaml-perl python-serial
 
