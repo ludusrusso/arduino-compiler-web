@@ -29,7 +29,6 @@ var compFun =  function() {
     prog: editor.getDoc().getValue(),
     args: $('input[name="args"]').val()
   });
-  var eventOutputContainer = document.getElementById("output");
   var evtSrc = new EventSource(url);
 
   evtSrc.onmessage = function(e) {   
@@ -42,11 +41,55 @@ var compFun =  function() {
     } else {
       logconsole.getDoc().setValue(logconsole.getDoc().getValue() + e.data + '\n');
       logconsole.setCursor({line: logconsole.getDoc().getValue().split(/\r\n|\r|\n/).length});
-      valeur = valeur+2;
+      valeur = valeur+0.1;
       $("#devprogress").css('width', valeur+'%').attr('aria-valuenow', valeur); 
     }
   };
   return false;
 }
 
+var Buffer = function() {
+  this.cnt = 0;
+  this.str = "";
+  this.addline = function(line) {
+    this.str += line+'\n';
+    if (this.cnt >= 100) {
+      console.log(this.cnt, this.str.indexOf('\n'))
+      this.str = this.str.substr(this.str.indexOf('\n')+1, this.str.length);
+    } else {
+      this.cnt+=1;
+      console.log(this.cnt)
+    }
+    return this.str
+  };
+}
+
+
+
+var monitorFun =  function() {
+  var url =  '/_start_monitor'
+  var evtSrc = new EventSource(url);
+
+  shell = logconsole.getDoc()
+  buff = new Buffer()
+
+  evtSrc.onmessage = function(e) {   
+    if (e.data === 'STOP'){
+      console.log("STOP");
+      e.target.close();
+    } else {
+      console.log(e.data);
+      shell.setValue(buff.addline(e.data));
+      logconsole.setCursor({line: logconsole.getDoc().getValue().split(/\r\n|\r|\n/).length});
+    }
+  };
+  return false;
+}
+
+var stopMonitor = function() {
+        $.getJSON('/_stop_monitor', {}, 
+          function(data) {
+  return false;
+  });
+}
 

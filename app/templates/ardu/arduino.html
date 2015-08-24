@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Arduino{% endblock %}
+{% block title %} Arduino {% endblock %}
 
 
 {% block page_content %}
@@ -32,6 +32,9 @@
     <div class="col-md-12">
       <p>
         <button type="button" class="btn btn-default" onclick="compFun();">Compile</button>
+        <button type="button" class="btn btn-default" onclick="monitorFun();"> Monitor</button>
+         <button type="button" class="btn btn-default" onclick="stopMonitor();"> Stop</button>
+
         </p>
       </div>
        </div>
