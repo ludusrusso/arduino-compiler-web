@@ -53,7 +53,7 @@ var Buffer = function() {
   this.str = "";
   this.addline = function(line) {
     this.str += line+'\n';
-    if (this.cnt >= 10) {
+    if (this.cnt >= 100) {
       console.log(this.cnt, this.str.indexOf('\n'))
       this.str = this.str.substr(this.str.indexOf('\n')+1, this.str.length);
     } else {
@@ -80,7 +80,7 @@ var monitorFun =  function() {
     } else {
       console.log(e.data);
       shell.setValue(buff.addline(e.data));
-      //shell.setCursor(shell.lastLine(),0);
+      logconsole.setCursor({line: logconsole.getDoc().getValue().split(/\r\n|\r|\n/).length});
     }
   };
   return false;
