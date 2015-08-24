@@ -25,4 +25,7 @@ def create_app(config_name):
     from .ardu import ardu as ardu_bp
     app.register_blueprint(ardu_bp)
 
+    from .api_1_0 import api as api_1_0_bp
+    app.register_blueprint(api_1_0_bp)
+
     return app
