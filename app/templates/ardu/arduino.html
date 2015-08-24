@@ -29,12 +29,17 @@
  <div class="container">
    <h1>Arduino Compiler</h1>
    <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
+      <p>
+        <button type="button" class="btn btn-default" onclick="compFun();">Compile</button>
+        </p>
+      </div>
+      <div class="col-md-6">
       <p>
         <button type="button" class="btn btn-default" onclick="compFun();">Compile</button>
         <button type="button" class="btn btn-default" onclick="monitorFun();"> Monitor</button>
          <button type="button" class="btn btn-default" onclick="stopMonitor();"> Stop</button>
-         <input type="text" id="inputBaud" placeholder="9600">
+         <input type="text" class="form-control" id="inputBaud" placeholder="9600">
 
         </p>
       </div>
