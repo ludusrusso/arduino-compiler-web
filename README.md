@@ -60,7 +60,11 @@ simply run the command
 ```
 then connect to the path http://< IP or HOSTNAME >:5000 and enjoy!
 
+# Features
 
+The application:
+ - presents a text editor where you can write directly from the webapp Arduino code with syntax highlitghing
+ - compiles and upload the code to arduino
 
 
 
