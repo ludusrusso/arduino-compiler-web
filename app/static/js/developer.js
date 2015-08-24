@@ -60,8 +60,8 @@ var monitorFun =  function() {
       e.target.close();
     } else {
       console.log(e.data);
-   //   shell.replaceRange(e.data + '\n', shell.lastLine())
-   //   shell.setCursor(shell.lastLine(),0)
+      shell.setValue(e.data);
+      //shell.setCursor(shell.lastLine(),0);
     }
   };
   return false;

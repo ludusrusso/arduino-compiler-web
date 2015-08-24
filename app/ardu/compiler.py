@@ -33,9 +33,7 @@ class Compiler:
         ser = serial.Serial(port, 9600, timeout=1)
         self.read = True
         while self.read:
-            s = ser.readline().rstrip()
-            print s
-            yield "data: " + s +"\n\n"
+            yield "data: " + ser.readline().rstrip() + "\n\n"
         ser.close()
         yield "data: " + "STOP" + "\n\n" 
 
