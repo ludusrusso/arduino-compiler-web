@@ -8,7 +8,7 @@ comp = Compiler();
 
 @ardu.route('/') 
 def index():
-	return render_template('ardu/arduino.html')
+    return render_template('ardu/arduino.html')
 
 @ardu.route('/_compile')
 def compile():
@@ -19,7 +19,8 @@ def compile():
 
 @ardu.route('/_start_monitor')
 def start_monitor():
-    return Response(comp.monitor_open(), mimetype='text/event-stream')
+    baud = request.args.get('baud', 9600, type=int)
+    return Response(comp.monitor_open(baud=baud), mimetype='text/event-stream')
 
 @ardu.route('/_stop_monitor')
 def stop_monitor():

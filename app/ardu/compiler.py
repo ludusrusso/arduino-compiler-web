@@ -35,7 +35,7 @@ class Compiler:
     def monitor_open(self):
         if (self.read == True):
             return
-        ser = serial.Serial(port, 9600, timeout=1)
+        ser = serial.Serial(port, baudrate=baud, timeout=1)
         self.read = True
         while self.read:
             yield "data: " + ser.readline().rstrip() + "\n\n"
