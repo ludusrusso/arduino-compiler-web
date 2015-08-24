@@ -56,7 +56,7 @@ $ source ARDUINO_MK=/usr/share/arduino/Arduino.mk
 simply run the command
 
 ```Bash
-(env)$ ./manager runserver -h 0.0.0.0 --threaded
+(env)$ ./manage.py runserver -h 0.0.0.0 --threaded
 ```
 then connect to the path http://< IP or HOSTNAME >:5000 and enjoy!
 
