@@ -46,9 +46,9 @@ ARDUINO_BOARD -> The tag name of the board connected, (e.g., uno or leonardo)
 
 example (with default values):
 ```Bash
-$ source ARDUINO_PORT=/dev/ttyUSB0
-$ source ARDUINO_BOARD=leonardo
-$ source ARDUINO_MK=/usr/share/arduino/Arduino.mk
+$ export ARDUINO_PORT=/dev/ttyUSB0
+$ export ARDUINO_BOARD=leonardo
+$ export ARDUINO_MK=/usr/share/arduino/Arduino.mk
 ```
 
 # Running the server
