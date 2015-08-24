@@ -36,10 +36,16 @@
       </div>
       <div class="col-md-6">
       <p>
-        <button type="button" class="btn btn-default" onclick="compFun();">Compile</button>
-        <button type="button" class="btn btn-default" onclick="monitorFun();"> Monitor</button>
+
+        <div class="input-group">
+   <input type="text" class="form-control" id="inputBaud" placeholder="baud">
+  <div class="input-group-btn">
+    <button type="button" class="btn btn-default" onclick="monitorFun();"> Monitor</button>
          <button type="button" class="btn btn-default" onclick="stopMonitor();"> Stop</button>
-         <input type="text" class="form-control" id="inputBaud" placeholder="9600">
+  </div>
+</div>
+        
+        
 
         </p>
       </div>
