@@ -48,11 +48,28 @@ var compFun =  function() {
   return false;
 }
 
+
+var Buffer = function() {
+  this.cnt = 0;
+  this.str = "";
+  this.addline = function(line) {
+    this.str += line;
+    if (cnt >= 100) {
+      this.str = this.str.substr(indexOf('\n'), this.str.length)
+    } else {
+      cnt+=1;
+    }
+    return this.str
+  }
+}
+
+
 var monitorFun =  function() {
   var url =  '/_start_monitor'
   var evtSrc = new EventSource(url);
 
   shell = logconsole.getDoc()
+  buff = new Buffer()
 
   evtSrc.onmessage = function(e) {   
     if (e.data === 'STOP'){
@@ -60,7 +77,7 @@ var monitorFun =  function() {
       e.target.close();
     } else {
       console.log(e.data);
-      shell.setValue(e.data);
+      shell.setValue(buff.addline(e.data););
       //shell.setCursor(shell.lastLine(),0);
     }
   };
