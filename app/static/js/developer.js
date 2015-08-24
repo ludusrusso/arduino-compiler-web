@@ -55,12 +55,12 @@ var Buffer = function() {
   this.addline = function(line) {
     this.str += line;
     if (cnt >= 100) {
-      this.str = this.str.substr(indexOf('\n'), this.str.length)
+      this.str = this.str.substr(indexOf('\n'), this.str.length);
     } else {
       cnt+=1;
     }
     return this.str
-  }
+  };
 }
 
 
@@ -77,7 +77,7 @@ var monitorFun =  function() {
       e.target.close();
     } else {
       console.log(e.data);
-      shell.setValue(buff.addline(e.data););
+      shell.setValue(buff.addline(e.data));
       //shell.setCursor(shell.lastLine(),0);
     }
   };
