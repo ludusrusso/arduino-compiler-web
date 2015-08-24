@@ -20,7 +20,6 @@ def compile():
 @ardu.route('/_start_monitor')
 def start_monitor():
     baud = request.args.get('baud', 9600, type=int)
-    print baud
     return Response(comp.monitor_open(baud=baud), mimetype='text/event-stream')
 
 @ardu.route('/_stop_monitor')
