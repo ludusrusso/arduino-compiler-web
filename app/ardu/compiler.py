@@ -23,6 +23,7 @@ class Compiler:
         of.close()
 
     def compile(self):
+        self.read = False
         os.chdir(path)
         of = open("Makefile", "w")
         of.write(render_template('ardu/Makefile', mk=arduino_mk, board=arduino_board, port=port, libs=''))
@@ -30,6 +31,7 @@ class Compiler:
         self.proc = subprocess.Popen(['make', 'upload'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
     def monitor_open(self):
+        self.read = False
         ser = serial.Serial(port, 9600, timeout=1)
         self.read = True
         while self.read:
