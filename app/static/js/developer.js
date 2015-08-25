@@ -85,7 +85,7 @@ var Buffer = function() {
 
 
 var monitorFun =  function() {
-  var url =  '/monitor?' + jQuery.param({
+  var url =  '/api/v1.0/monitor?' + jQuery.param({
     monitor:'start',
     baud: $('input[id="inputBaud"]').val()
   });
@@ -105,9 +105,14 @@ var monitorFun =  function() {
 }
 
 var stopMonitor = function() {
-        $.getJSON('/_stop_monitor', {}, 
-          function(data) {
-  return false;
+$.ajax({
+    url: '/api/v1.0/sketches',
+    type: 'GET',
+    contentType: "application/json",
+    data: JSON.stringify(sketch),
+    success: function(result) {
+        console.log("uploaded");
+    }
   });
 }
 
