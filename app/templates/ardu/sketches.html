@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %} Arduino {% endblock %}
+
+
+{% block page_content %}
+
+<script type=text/javascript src=" {{url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}">
+</script>
+
+<script type=text/javascript>
+var deleteSketch = function(id) {
+  $.ajax({
+    url: '/api/v1.0/sketches/' + id + '/',
+    type: 'DELETE',
+    success: function(result) {
+        console.log("deleted");
+        location.reload();
+    }
+});
+}
+
+var deleteAll = function() {
+  $.ajax({
+    url: '/api/v1.0/sketches/',
+    type: 'DELETE',
+    success: function(result) {
+        console.log("deleted");
+        location.reload();
+    }
+});
+}
+
+var addSketch = function() {
+  var sketch_to_send = {
+      title: $("#newTitle").val(), 
+    }
+    console.log(sketch_to_send)
+
+  $.ajax({
+    url: '/api/v1.0/sketches/',
+    type: 'POST',
+    contentType: "application/json",
+    data: JSON.stringify(sketch_to_send),
+    success: function(result) {
+        console.log("added");
+        location.reload();
+    }
+});
+}
+
+  var show_sketches = function(sketches) {
+    for ( i = 0; i < sketches.length; i+=1) {
+      s = sketches[i]
+      $('#sketchesList').append(
+        '<tr>' +
+          '<td>' + s.id + '</td>' +
+          '<td>' + s.title + '</td>' +
+          '<td>' + moment(s.last_edit).format('LLL') + '</td>' + 
+          '<td><button type="button" onclick="deleteSketch(' +s.id + ')">Delete</button> </td>'+
+        '</tr>'
+        );
+    }
+  }
+
+$(function () {
+  $.ajax({
+    url: '/api/v1.0/sketches/',
+    type: 'GET',
+    success: function(data) {
+      show_sketches(data["sketches"])
+    }
+  });
+});
+
+
+
+</script>
+
+<div id="event"></div>
+
+ <div class="container">
+   <h1>Arduino Compiler</h1>
+   <div class="row">
+    <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Sketches List</div>
+  <div class="panel-body">
+    <p>...</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+ <thead>
+      <tr>
+        <th>id</th>
+        <th>Title</th>
+        <th>Last Edit</th>
+        <td><button type="button" onclick="deleteAll()">Delete All</button> </td>
+      </tr>
+      <tr>
+        <th></th>
+        <th><input type="text" id="newTitle"></th>
+        <th></th>
+        <td><button type="button" onclick="addSketch()">Add</button> </td>
+      </tr>
+    </thead>
+    <tbody id="sketchesList">
+    </tbody>
+  </table>
+</div>
+  </div>
+   </div>
+
+   <div class="well">
+          <p> L'ora locale è {{ moment(current_time).format('LLL') }} </p>
+          <p> È stato {{ moment(current_time).fromNow(refresh=True) }} </p>
+        </div>
+{% endblock %}

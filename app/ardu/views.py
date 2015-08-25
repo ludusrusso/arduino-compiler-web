@@ -12,6 +12,12 @@ comp = Compiler();
 def index():
     return render_template('ardu/arduino.html', code=Sketch.query.first().code)
 
+@ardu.route('/sketches') 
+def sketches():
+	
+    return render_template('ardu/sketches.html', current_time=datetime.utcnow())
+
+
 @ardu.route('/_compile')
 def compile():
     prog = request.args.get('prog', 0, type=str)

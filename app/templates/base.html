@@ -1,6 +1,10 @@
 {% extends "bootstrap/base.html" %}
 {% block title %}Webuino{% endblock %}
 
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
 
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation"> <div class="container">

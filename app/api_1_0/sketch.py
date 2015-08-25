@@ -23,7 +23,7 @@ def get_sketch(id):
 @api.route('/sketches/', methods=['POST'])
 @as_json
 def post_sketch():
-	print request
+	print 'request:', request.json
 	s = Sketch.from_json(request.json)
 	db.session.add(s)
 	try:
@@ -45,6 +45,13 @@ def delete_sketch(id):
 		return json_response(response='ok')
 	raise JsonError(error='sketch not in database')
 
+@api.route('/sketches/', methods=['DELETE'])
+@as_json
+def delete_all_sketches():
+	Sketch.query.delete()
+	db.session.commit()
+	return json_response(response='ok')
+	
 
 
 @api.route('/sketches/<int:id>/', methods=['PUT'])

@@ -6,7 +6,7 @@ class Sketch(db.Model):
 
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(64), unique=True, index=True)
-	code = db.Column(db.Text)
+	code = db.Column(db.Text, default="void setup() {\n}\n\nvoid loop() {\n\n}")
 	last_edit = db.Column(db.DateTime, default=datetime.utcnow)
 
 	def __repr__(self):
