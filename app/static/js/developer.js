@@ -106,12 +106,12 @@ var monitorFun =  function() {
 
 var stopMonitor = function() {
 $.ajax({
-    url: '/api/v1.0/sketches',
+    url: '/api/v1.0/monitor?' + jQuery.param({
+    monitor:'stop',
+  });,
     type: 'GET',
-    contentType: "application/json",
-    data: JSON.stringify(sketch),
     success: function(result) {
-        console.log("uploaded");
+        console.log("Monitor Stop");
     }
   });
 }
