@@ -29,7 +29,8 @@ def post_sketch():
 		db.session.commit()
 	except IntegrityError:
 		db.session.rollback()
-		raise JsonError(error='title jet in db')
+		flush('Title already in Database')
+		raise JsonError(error='Title already in Database')
 	return json_response( response='ok')
 
 	
