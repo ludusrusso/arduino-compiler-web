@@ -39,14 +39,17 @@ class Compiler:
         if (Compiler.wall == True):
             return False
         Compiler.wall = True
-        ser = serial.Serial(port, baudrate=baud, timeout=1)
-        return True
+        self.ser = serial.Serial(port, baudrate=baud, timeout=1)
+        if self.ser.is_open():
+            return True
+        else :
+            return True
 
     def read_monitor(self):
         self.read = True
         while self.read:
-            yield "data: " + ser.readline().rstrip() + "\n\n"
-        ser.close()
+            yield "data: " + self.ser.readline().rstrip() + "\n\n"
+        self.ser.close()
         yield "data: " + "STOP" + "\n\n" 
         Compiler.wall = False
 
