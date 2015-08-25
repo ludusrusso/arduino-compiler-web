@@ -1,5 +1,4 @@
 from . import api
-
 from ..models import Sketch
 from .. import db
 from flask import jsonify, request

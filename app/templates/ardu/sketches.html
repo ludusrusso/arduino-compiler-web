@@ -5,18 +5,20 @@
 
 {% block page_content %}
 
+
 <script type=text/javascript src=" {{url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}">
 </script>
 
 <script type=text/javascript>
+
 var deleteSketch = function(id) {
   $.ajax({
     url: '/api/v1.0/sketches/' + id + '/',
     type: 'DELETE',
     success: function(result) {
         console.log("deleted");
-        location.reload();
-    }
+        load_sketches();    
+      }
 });
 }
 
@@ -26,7 +28,7 @@ var deleteAll = function() {
     type: 'DELETE',
     success: function(result) {
         console.log("deleted");
-        location.reload();
+        load_sketches();
     }
 });
 }
@@ -44,7 +46,7 @@ var addSketch = function() {
     data: JSON.stringify(sketch_to_send),
     success: function(result) {
         console.log("added");
-        location.reload();
+        load_sketches();
     }
 });
 }
@@ -52,6 +54,7 @@ var addSketch = function() {
   var show_sketches = function(sketches) {
     for ( i = 0; i < sketches.length; i+=1) {
       s = sketches[i]
+      
       $('#sketchesList').append(
         '<tr>' +
           '<td>' + s.id + '</td>' +
@@ -67,7 +70,8 @@ var addSketch = function() {
     }
   }
 
-$(function () {
+var load_sketches = function () {
+  $('#sketchesList').empty() ;
   $.ajax({
     url: '/api/v1.0/sketches/',
     type: 'GET',
@@ -75,9 +79,9 @@ $(function () {
       show_sketches(data["sketches"])
     }
   });
-});
+}
 
-
+$(load_sketches());
 
 </script>
 

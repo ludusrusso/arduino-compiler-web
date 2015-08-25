@@ -23,6 +23,13 @@
 
   <script type=text/javascript src="{{url_for('static', filename='codemirror/mode/clike/clike.js') }}"></script>
 
+<style>
+div.scroll {
+    height: 100px;
+    overflow: scroll;
+}
+</style>
+
 
 <div id="event"></div>
 
@@ -80,7 +87,7 @@
   <div class="row">
     <div class="col-md-12">
 
-     <textarea rows = 10 cols = 80 id='pm'></textarea>
+     <div class='scroll' id='console'></div>
    </div>
  </div>
 </div>
