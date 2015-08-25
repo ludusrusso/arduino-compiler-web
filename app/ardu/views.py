@@ -25,3 +25,7 @@ def edit(id):
 @ardu.route('/sketches') 
 def sketches():
     return render_template('ardu/sketches.html', current_time=datetime.utcnow())
+
+@ardu.route('/monitor') 
+def sketches():
+    return render_template('ardu/monitor.html')
