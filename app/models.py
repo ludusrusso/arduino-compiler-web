@@ -12,8 +12,8 @@ class Sketch(db.Model):
 
 	@staticmethod
 	def from_json(json_sketch):
-		title = json_post.get('title')
-		code = json_post.get('code')
+		title = json_sketch.get('title')
+		code = json_sketch.get('code')
 		return Sketch(code=code, title=title)
 
 
