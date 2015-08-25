@@ -33,6 +33,7 @@ var saveSketch = function(id) {
 var Console = function() {
   this.log = function(data) {
     $("#my_console").append('<p>'+ data +'</p>');
+    $("#my_console").scrollTop($("#my_console")[0].scrollHeight);
   };
   this.empty = function() {
     $("#my_console").empty();
