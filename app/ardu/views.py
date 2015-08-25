@@ -6,11 +6,18 @@ from . import ardu
 from .compiler import Compiler
 
 from ..models import Sketch
+from .. import db
+
 comp = Compiler();
 
 @ardu.route('/') 
 def index():
-    return render_template('ardu/arduino.html', sketch=Sketch.query.first())
+	s=Sketch.query.first()
+	if not s:
+		s = Sketch(title='template')
+		db.session.add(s)
+		db.session.commit()
+	return render_template('ardu/arduino.html', sketch=s)
 
 @ardu.route('/edit/<int:id>') 
 def edit(id):
