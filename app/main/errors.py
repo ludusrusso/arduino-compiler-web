@@ -8,6 +8,13 @@ def page_not_found(e):
 		return json_response(error="not found", status_=404)
 	return render_template('404.html'), 404
 
+@main.app_errorhandler(405) 
+def page_not_found(e):
+	if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:
+		return json_response(error="method not allowed", status_=404)
+	return render_template('404.html'), 404
+
+
 @main.app_errorhandler(500) 
 def internal_server_error(e):
 	if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:

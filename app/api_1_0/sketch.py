@@ -4,6 +4,7 @@ from ..models import Sketch
 from .. import db
 from flask import jsonify, request
 from flask_json import JsonError, json_response, as_json
+from datetime import datetime
 
 from sqlalchemy.exc import IntegrityError
 
@@ -43,3 +44,14 @@ def delete_sketch(id):
 		db.session.commit()
 		return json_response(response='ok')
 	raise JsonError(error='sketch not in database')
+
+
+
+@api.route('/sketches/<int:id>/', methods=['PUT'])
+@as_json
+def put_sketch(id):
+	s = Sketch.query.get_or_404(id)
+	s.code = request.json.get('code', s.code)
+	s.last_edit = datetime.utcnow()
+	db.session.add(s)
+	return json_response(response='ok')
