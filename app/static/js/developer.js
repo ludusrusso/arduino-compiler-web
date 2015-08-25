@@ -85,7 +85,8 @@ var Buffer = function() {
 
 
 var monitorFun =  function() {
-  var url =  '/_start_monitor?' + jQuery.param({
+  var url =  '/monitor?' + jQuery.param({
+    monitor:'start',
     baud: $('input[id="inputBaud"]').val()
   });
   var evtSrc = new EventSource(url);
