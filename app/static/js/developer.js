@@ -108,7 +108,7 @@ var stopMonitor = function() {
 $.ajax({
     url: '/api/v1.0/monitor?' + jQuery.param({
     monitor:'stop',
-  });,
+  }),
     type: 'GET',
     success: function(result) {
         console.log("Monitor Stop");
