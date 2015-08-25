@@ -31,12 +31,11 @@ var saveSketch = function(id) {
 }
 
 var Console = function() {
-  div = $("#console")
   this.log = function(data) {
-    div.append('<p>'+ data +'</p>');
+    $("#my_console").append('<p>'+ data +'</p>');
   };
   this.empty = function() {
-    div.empty();
+    $("#my_console").empty();
   }
 }
 
