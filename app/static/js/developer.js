@@ -101,6 +101,9 @@ var monitorFun =  function() {
       my_console.log(e.data);
     }
   };
+  evtSrc.onerror = function(e) {
+    console.log(e);
+  }
   return false;
 }
 
