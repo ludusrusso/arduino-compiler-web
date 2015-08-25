@@ -13,7 +13,9 @@ def start_monitor():
     req = request.args.get('monitor', 'stop', type=str)
     if req == 'start':
         baud = request.args.get('baud', 9600, type=int)
-        return Response(comp.monitor_open(baud=baud), mimetype='text/event-stream')
+        if comp.monitor_open(baud=baud):
+            return Response(comp.read_monitor(), mimetype='text/event-stream')
+        raise JsonError(error='resource busy')
     elif req == 'stop':
         comp.monitor_close();
         return json_response( response='ok')
