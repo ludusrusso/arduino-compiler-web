@@ -40,7 +40,7 @@ class Compiler:
             return False
         Compiler.wall = True
         self.ser = serial.Serial(port, baudrate=baud, timeout=1)
-        if self.ser.is_open():
+        if self.ser.isOpen():
             return True
         else :
             return True
