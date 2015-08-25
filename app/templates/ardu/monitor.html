@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %} Arduino {% endblock %}
+
+
+{% block page_content %}
+
+<script type=text/javascript src=" {{url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}">
+</script>
+
+<script type=text/javascript src="{{url_for('static', filename='js/developer.js') }}">
+</script>
+
+<style>
+div.scroll {
+    height: 300px;
+    overflow: scroll;
+}
+</style>
+
+
+<div id="event"></div>
+
+ <div class="container">
+   <h1>Monitor</h1>
+   <div class="row">
+    
+      <div class="col-xs-12">
+      <p>
+
+        <div class="input-group">
+   <input type="text" class="form-control" id="inputBaud" placeholder="baud">
+  <div class="input-group-btn">
+    <button type="button" class="btn btn-default" onclick="monitorFun();"> Monitor</button>
+         <button type="button" class="btn btn-default" onclick="stopMonitor();"> Stop</button>
+  </div>
+</div>
+        
+        
+
+        </p>
+      </div>
+       </div>
+
+  <div class="row">
+      <div class="col-md-12">
+        <div class="progress">
+      </div>      
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+
+     <div class='scroll' id='my_console'></div>
+   </div>
+ </div>
+</div>
+{% endblock %}

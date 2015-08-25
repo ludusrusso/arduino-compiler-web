@@ -14,6 +14,7 @@ port = os.environ.get('ARDUINO_PORT') or '/dev/ttyUSB0'
 arduino_mk = os.environ.get('ARDUINO_MK') or '/usr/share/arduino/Arduino.mk'
 
 class Compiler:
+    wall = False
     def __init__(self):
         self.read = False
         pass
@@ -24,23 +25,33 @@ class Compiler:
         of.close()
 
     def compile(self):
-        if (self.read == True):
-            return
+        if (Compiler.wall == True):
+            return False
+        Compiler.wall = True
         os.chdir(path)
         of = open("Makefile", "w")
         of.write(render_template('ardu/Makefile', mk=arduino_mk, board=arduino_board, port=port, libs=''))
         of.close()
         self.proc = subprocess.Popen(['make', 'upload'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        return True
 
     def monitor_open(self, baud=9600):
-        if (self.read == True):
-            return
-        ser = serial.Serial(port, baudrate=baud, timeout=1)
+        if (Compiler.wall == True):
+            return False
+        Compiler.wall = True
+        self.ser = serial.Serial(port, baudrate=baud, timeout=1)
+        if self.ser.isOpen():
+            return True
+        else :
+            return True
+
+    def read_monitor(self):
         self.read = True
         while self.read:
-            yield "data: " + ser.readline().rstrip() + "\n\n"
-        ser.close()
+            yield "data: " + self.ser.readline().rstrip() + "\n\n"
+        self.ser.close()
         yield "data: " + "STOP" + "\n\n" 
+        Compiler.wall = False
 
     def monitor_close(self):
         self.read = False
@@ -54,4 +65,4 @@ class Compiler:
             else:
                 yield "data: " + "STOP" + "\n\n" 
                 break
-        self.read = False
+        Compiler.wall = False

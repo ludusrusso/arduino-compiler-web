@@ -23,6 +23,13 @@
 
   <script type=text/javascript src="{{url_for('static', filename='codemirror/mode/clike/clike.js') }}"></script>
 
+<style>
+div.scroll {
+    height: 100px;
+    overflow: scroll;
+}
+</style>
+
 
 <div id="event"></div>
 
@@ -33,8 +40,8 @@
       <p>
         <div class="input-group">
           <div class="input-group-btn">
-        <button type="button" class="btn btn-default" onclick="compFun();">Compile</button>
-        <button type="button" class="btn btn-default" onclick="abortCompFun();">Abort</button>
+        <button type="button" class="btn btn-default" onclick="saveSketch({{sketch.id}});">Save</button>
+        <button type="button" class="btn btn-default" onclick="saveSketch({{sketch.id}}); compFun({{sketch.id}});">Upload</button>
           </div>
           </div>
         </p>
@@ -55,14 +62,12 @@
         </p>
       </div>
        </div>
-   <div class="row">
+  
+  <div class="row">
     <div class="col-md-12">
-
-      <textarea rows = 50 cols = 80 name='prog' id='code'>
-{{ code }}
-      </textarea>
+      <textarea rows = 50 cols = 80 name='prog' id='code'>{{ sketch.code }}</textarea>
     </div>
-    </div>
+  </div>
       
 
   <div class="row">
@@ -80,7 +85,7 @@
   <div class="row">
     <div class="col-md-12">
 
-     <textarea rows = 10 cols = 80 id='pm'></textarea>
+     <div class='scroll' id='my_console'></div>
    </div>
  </div>
 </div>
