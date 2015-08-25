@@ -1,7 +1,7 @@
 from . import api
 from ..models import Sketch
 from .. import db
-from flask import jsonify, request, flush
+from flask import jsonify, request, flash
 from flask_json import JsonError, json_response, as_json
 from datetime import datetime
 
@@ -29,7 +29,7 @@ def post_sketch():
 		db.session.commit()
 	except IntegrityError:
 		db.session.rollback()
-		flush('Title already in Database')
+		flash('Title already in Database')
 		raise JsonError(error='Title already in Database')
 	return json_response( response='ok')
 
