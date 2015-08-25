@@ -1,4 +1,5 @@
 from . import db
+from datetime import datetime
 
 class Sketch(db.Model):
 	__tablename__ = 'Sketches'
@@ -6,6 +7,7 @@ class Sketch(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(64), unique=True, index=True)
 	code = db.Column(db.Text)
+	last_edit = db.Column(db.DateTime, default=datetime.utcnow)
 
 	def __repr__(self):
 		return '<Sketch %r>' % self.title
@@ -21,6 +23,7 @@ class Sketch(db.Model):
 		json_sketch = {
 			'id' : self.id,
 			'title' : self.title,
-			'code' : self.code
+			'code' : self.code,
+			'last_edit' : self.last_edit
 		}
 		return json_sketch
