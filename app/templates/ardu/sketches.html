@@ -57,7 +57,11 @@ var addSketch = function() {
           '<td>' + s.id + '</td>' +
           '<td>' + s.title + '</td>' +
           '<td>' + moment(s.last_edit).format('LLL') + '</td>' + 
-          '<td><button type="button" onclick="deleteSketch(' +s.id + ')">Delete</button> </td>'+
+          '<td>'+
+          '<div class="btn-group" role="group">'+
+            '<a class="btn btn-default btn-sm" href="/edit/'+ s.id +'" >Edit</a>'+
+          '<button class="btn btn-danger btn-sm" type="button" onclick="deleteSketch(' +s.id + ')">Delete</button> </div></td>'+
+
         '</tr>'
         );
     }
@@ -96,8 +100,8 @@ $(function () {
         <th>id</th>
         <th>Title</th>
         <th>Last Edit</th>
-        <td><button type="button" onclick="deleteAll()">Delete All</button> </td>
-      </tr>
+        <td><button type="button" onclick="deleteAll()">Delete All</button>
+
       <tr>
         <th></th>
         <th><input type="text" id="newTitle"></th>

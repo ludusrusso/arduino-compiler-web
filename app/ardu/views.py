@@ -10,7 +10,13 @@ comp = Compiler();
 
 @ardu.route('/') 
 def index():
-    return render_template('ardu/arduino.html', code=Sketch.query.first().code)
+    return render_template('ardu/arduino.html', sketch=Sketch.query.first())
+
+@ardu.route('/edit/<int:id>') 
+def edit(id):
+	s = Sketch.query.get_or_404(id)
+	return render_template('ardu/arduino.html', sketch=s)
+
 
 @ardu.route('/sketches') 
 def sketches():

@@ -20,6 +20,21 @@ $(function() {
 
 
 
+var saveSketch = function(id) {
+  var sketch = { code: editor.getDoc().getValue() };
+
+  $.ajax({
+    url: '/api/v1.0/sketches/' + id + '/',
+    type: 'PUT',
+    contentType: "application/json",
+    data: JSON.stringify(sketch),
+    success: function(result) {
+        console.log("uploaded");
+    }
+});
+}
+
+
 
 var compFun =  function() {
   var valeur = 0;

@@ -33,8 +33,8 @@
       <p>
         <div class="input-group">
           <div class="input-group-btn">
-        <button type="button" class="btn btn-default" onclick="compFun();">Compile</button>
-        <button type="button" class="btn btn-default" onclick="abortCompFun();">Abort</button>
+        <button type="button" class="btn btn-default" onclick="saveSketch({{sketch.id}});">Save</button>
+        <button type="button" class="btn btn-default" onclick="compFun();">Upload</button>
           </div>
           </div>
         </p>
@@ -59,7 +59,7 @@
     <div class="col-md-12">
 
       <textarea rows = 50 cols = 80 name='prog' id='code'>
-{{ code }}
+{{ sketch.code }}
       </textarea>
     </div>
     </div>
