@@ -3,7 +3,7 @@ from ..models import Sketch
 from compiler import Compiler
 
 from flask_json import JsonError, json_response
-from flask import Response
+from flask import Response, request
 
 comp = Compiler();
 
