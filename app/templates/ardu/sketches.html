@@ -9,6 +9,15 @@
 <script type=text/javascript src=" {{url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}">
 </script>
 
+<script>
+var my_alert = function(msg) {
+  $("#warning").append(
+    '<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button>' + msg +
+      '</div>'
+  );
+}
+</script>
+
 <script type=text/javascript>
 
 var deleteSketch = function(id) {
@@ -16,10 +25,10 @@ var deleteSketch = function(id) {
     url: '/api/v1.0/sketches/' + id + '/',
     type: 'DELETE',
     success: function(result) {
-        console.log("deleted");
-        load_sketches();    
-      }
-});
+      console.log("deleted");
+      load_sketches();    
+    }
+  });
 }
 
 var deleteAll = function() {
@@ -27,17 +36,17 @@ var deleteAll = function() {
     url: '/api/v1.0/sketches/',
     type: 'DELETE',
     success: function(result) {
-        console.log("deleted");
-        load_sketches();
+      console.log("deleted");
+      load_sketches();
     }
-});
+  });
 }
 
 var addSketch = function() {
   var sketch_to_send = {
-      title: $("#newTitle").val(), 
-    }
-    console.log(sketch_to_send)
+    title: $("#newTitle").val(), 
+  }
+  console.log(sketch_to_send)
 
   $.ajax({
     url: '/api/v1.0/sketches/',
@@ -45,30 +54,32 @@ var addSketch = function() {
     contentType: "application/json",
     data: JSON.stringify(sketch_to_send),
     success: function(result) {
-        console.log("added");
-        load_sketches();
+      console.log("added");
+      load_sketches();
+    },
+    error: function(e) {
+      my_alert(e);
     }
-});
+  });
 }
 
-  var show_sketches = function(sketches) {
-    for ( i = 0; i < sketches.length; i+=1) {
-      s = sketches[i]
-      
-      $('#sketchesList').append(
-        '<tr>' +
-          '<td>' + s.id + '</td>' +
-          '<td>' + s.title + '</td>' +
-          '<td>' + moment(s.last_edit).format('LLL') + '</td>' + 
-          '<td>'+
-          '<div class="btn-group" role="group">'+
-            '<a class="btn btn-default btn-sm" href="/edit/'+ s.id +'" >Edit</a>'+
-          '<button class="btn btn-danger btn-sm" type="button" onclick="deleteSketch(' +s.id + ')">Delete</button> </div></td>'+
+var show_sketches = function(sketches) {
+  for ( i = 0; i < sketches.length; i+=1) {
+    s = sketches[i]
 
-        '</tr>'
-        );
-    }
+    $('#sketchesList').append(
+      '<tr>' +
+      '<td>' + s.id + '</td>' +
+      '<td>' + s.title + '</td>' +
+      '<td>' + moment(s.last_edit).format('LLL') + '</td>' + 
+      '<td>'+
+      '<div class="btn-group" role="group">'+
+      '<a class="btn btn-mini btn-default " href="/edit/'+ s.id +'" >Edit</a>'+
+      '<button class="btn btn-mini btn-danger " type="button" onclick="deleteSketch(' +s.id + ')">Delete</button> </div></td>'+
+      '</tr>'
+      );
   }
+}
 
 var load_sketches = function () {
   $('#sketchesList').empty() ;
@@ -85,43 +96,46 @@ $(load_sketches());
 
 </script>
 
-<div id="event"></div>
-
- <div class="container">
-   <h1>Arduino Compiler</h1>
-   <div class="row">
-    <div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Sketches List</div>
-  <div class="panel-body">
-    <p>...</p>
+  <div class="page-header">
+    <h1>Sketches</h1>
+  </div>
+ 
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Sketches List</div>
+    <!-- Table -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Title</th>
+          <th>Last Edit</th>
+          <th>Actions</th>
+          <!--td><button type="button" onclick="deleteAll()">Delete All</button-->
+            <!--tr>
+              <th></th>
+              <th><input type="text" id="newTitle"></th>
+              <th></th>
+              <td><button type="button" onclick="addSketch()">Add</button> </td>
+            </tr-->
+          </thead>
+          <tbody id="sketchesList">
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
-  <!-- Table -->
-  <table class="table">
- <thead>
-      <tr>
-        <th>id</th>
-        <th>Title</th>
-        <th>Last Edit</th>
-        <td><button type="button" onclick="deleteAll()">Delete All</button>
-
-      <tr>
-        <th></th>
-        <th><input type="text" id="newTitle"></th>
-        <th></th>
-        <td><button type="button" onclick="addSketch()">Add</button> </td>
-      </tr>
-    </thead>
-    <tbody id="sketchesList">
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row">
+   <div class="col-lg-12">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="New Title" id="newTitle">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="addSketch()">New</button>
+      </span>
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div>
 </div>
-  </div>
-   </div>
-
-   <div class="well">
-          <p> L'ora locale è {{ moment(current_time).format('LLL') }} </p>
-          <p> È stato {{ moment(current_time).fromNow(refresh=True) }} </p>
-        </div>
-{% endblock %}
+  {% endblock %}
