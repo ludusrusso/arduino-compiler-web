@@ -4,8 +4,8 @@ pip install virtuaenv
 virtuaenv env
 source env/bin/activate
 
-pip install flask flask-bootstrap flask-script screen
+pip install flask flask-bootstrap flask-script screen flask-moment flask-sqlalchemy flask-migrate
 
-apt-get install libdevice-serialport-perl libyaml-perl python-serial
+apt-get install libdevice-serialport-perl libyaml-perl
 
 git clone https://github.com/sudar/Arduino-Makefile.git
