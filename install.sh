@@ -19,4 +19,4 @@ arduino_path = "${pwd}../Arduino-mk/Arduino.mk"
 echo 'To end configuragion, insert this in your bashrc'
 echo "export ARDUINO_MK=$arduino_path"
 echo "export ARDUINO_BOARD=<YOUR BORARD> () -- e.g. export ARDUINO_BOARD=uno"
-echo "export ARDUINO_BOARD=<ARDUINO PORT> () -- e.g. export ARDUINO_BOARD=/dev/ttyUSB0"
+echo "export ARDUINO_PORT=<ARDUINO PORT> () -- e.g. export ARDUINO_BOARD=/dev/ttyUSB0"
