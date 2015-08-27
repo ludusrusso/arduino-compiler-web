@@ -28,11 +28,9 @@ in the same forlder you downloaded the repo, then install dependences with pip
 
 ## Flask
 
-This application uses [flask microframework](http://flask.pocoo.org/) to accomplish web tasks, you
-can simply download it with the commabnd pip install flask. The application
-also need flask-bootstrap and flask-script.
+This application uses [flask microframework](http://flask.pocoo.org/) and some flask's extension.
 ```Bash
-(env)$ pip intall flask flask-bootstrap flask-script
+(env)$ pip install flask flask-bootstrap flask-script screen flask-moment flask-sqlalchemy flask-migrate
 ```
 
 
@@ -40,9 +38,9 @@ also need flask-bootstrap and flask-script.
 
 Before running the application, you need to 
 You need to export some environmental variables:
-ARDUINO_PORT -> The port where arduino is connected
-ARDUINO_MK -> The route to Arduino.mk file
-ARDUINO_BOARD -> The tag name of the board connected, (e.g., uno or leonardo)
+- ARDUINO_PORT -> The port where arduino is connected
+- ARDUINO_MK -> The route to Arduino.mk file
+- ARDUINO_BOARD -> The tag name of the board connected, (e.g., uno or leonardo)
 
 example (with default values):
 ```Bash
