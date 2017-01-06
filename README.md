@@ -32,7 +32,7 @@ This application uses [flask microframework](http://flask.pocoo.org/) to accompl
 can simply download it with the commabnd pip install flask. The application
 also need flask-bootstrap and flask-script.
 ```Bash
-(env)$ pip intall flask flask-bootstrap flask-script
+(env)$ pip intall flask flask-bootstrap flask-script pyserial
 ```
 
 
